@@ -2,12 +2,13 @@ import React from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 class Navbar extends React.Component {
-    static contextType = ThemeContext;
     render() {
-        const { isDarkTheme, darkTheme, lightTheme } = this.context;
-        const theme = isDarkTheme ? darkTheme : lightTheme;
         return (
-            <nav style={{ background: theme.background, color: theme.text, height: '120px'}}>
+            <ThemeContext.Consumer>{(context) => {
+                const { isDarkTheme, darkTheme, lightTheme } = context;
+                const theme = isDarkTheme ? darkTheme : lightTheme;
+                return (
+                    <nav style={{ background: theme.background, color: theme.text, height: '120px'}}>
                 <h2 style={{ textAlign: 'center' }}>
                     Oak Academy
                 </h2>
@@ -17,6 +18,10 @@ class Navbar extends React.Component {
                     <button className="ui button">Support</button>
                 </div>
             </nav>
+                )
+            }}
+
+            </ThemeContext.Consumer>
         )
     }
 }
