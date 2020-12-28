@@ -5,11 +5,11 @@ class ToDoList extends React.Component {
   
 
     render() {
-        const { isDarkTheme, lightTheme, darkTheme} = this.context;
-        const theme = isDarkTheme ? darkTheme : lightTheme;
+        // const { isDarkTheme, lightTheme, darkTheme, changeTheme} = this.context;
+        // const theme = isDarkTheme ? darkTheme : lightTheme;
         return (
             <ThemeContext.Consumer>{(context) => {
-                const { isDarkTheme, lightTheme, darkTheme} = context;
+                const { isDarkTheme, lightTheme, darkTheme, changeTheme} = context;
                 const theme = isDarkTheme ? darkTheme : lightTheme;
                 return (
                     
@@ -17,6 +17,7 @@ class ToDoList extends React.Component {
                         <p className="item"> Plan the family trip</p>
                         <p className="item">Go shopping for plants</p>
                         <p className="item">Go on a hike</p>
+                        <button className="ui button primary" onClick={changeTheme}>Change Theme</button>
                     </div>
                         )
             }}
