@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { AuthContext} from '../contexts/AuthContext';
 
 class ToDoList extends React.Component {
   
