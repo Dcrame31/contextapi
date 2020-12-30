@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { TodoListContext} from '../contexts/TodoListContext';
 
@@ -28,11 +28,23 @@ import { TodoListContext} from '../contexts/TodoListContext';
 // }
 
 const TodoList = () => {
-    const { todos } = useContext(TodoListContext);
+    const [ todo, setTodo ] = useState('');
+    const { todos, addTodo } = useContext(TodoListContext);
     const { isDarkTheme, lightTheme, darkTheme, changeTheme} = useContext(ThemeContext);
     const theme = isDarkTheme ? darkTheme : lightTheme;
+
+    const handleChange = (e) => {
+        setTodo(e.target.value);
+    }
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        addTodo(todo);
+        setTodo('');
+    }
+
     return (        
-            <div style={{ background: theme.background, color: theme.text, height: '140px', textAlign: 'center'}}>
+            <div style={{ background: theme.background, color: theme.text, textAlign: 'center'}}>
                 {todos.length ? (
                     todos.map((todo) => {
                         return <p key={todo.id} className='item'>{todo.text}</p>
@@ -40,6 +52,11 @@ const TodoList = () => {
                 ) : (
                     <div>You have no todos</div>
                 )}
+                <form onSubmit={handleFormSubmit}>
+                    <label htmlFor="todo">Add todo:</label>
+                    <input type="text" id="todo" onChange={handleChange}/>
+                    <input type="submit" value="Add new todo" className="ui button primary"/>
+                </form>
                 <button className="ui button primary" onClick={changeTheme}>Change Theme</button>
             </div>
     )

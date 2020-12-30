@@ -7,9 +7,21 @@ const TodoListContextProvider = ({children}) => {
         {text: 'Water plants', id: 1},
         {text: 'Code', id: 2},
         {text: 'Exercise', id: 3}
-    ])
+    ]);
+
+    const addTodo = (todo) => {
+        setTodos([
+            ...todos,
+            {text: todo, id: Math.random()}
+        ]);
+    };
+
+    const deleteTodo = () => {
+
+    }
+
     return (
-        <TodoListContext.Provider value={{todos}}>
+        <TodoListContext.Provider value={{todos, addTodo}}>
             {children}
         </TodoListContext.Provider>
     )
