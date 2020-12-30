@@ -15,4 +15,4 @@ const TodoListContextProvider = ({children}) => {
     )
 }
 
-export const TodoListContextProvider;
+export default TodoListContextProvider;
